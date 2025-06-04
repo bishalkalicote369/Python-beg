@@ -1,2 +1,3 @@
-print("hello world")
-print("$" * 10)
+X = 1
+y = 100
+print('hello')

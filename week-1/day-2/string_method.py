@@ -7,3 +7,5 @@ print(course.index("ai"))
 print(course.replace("a", "b"))
 print("ai" in course)
 print("ia" in course)
+print("ia" not in course)
+ai

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Login</title>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 20px;
+        }
+        
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .login-header {
+            background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .login-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .login-header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .login-body {
+            padding: 30px;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+        
+        .password-field {
+            display: flex;
+            align-items: center;
+            border: 2px solid #e1e5ee;
+            border-radius: 12px;
+            padding: 0 15px;
+            transition: border-color 0.3s;
+            background: #f8f9fa;
+        }
+        
+        .password-field:focus-within {
+            border-color: #4776E6;
+            box-shadow: 0 0 0 3px rgba(71, 118, 230, 0.2);
+        }
+        
+        .password-field input {
+            flex: 1;
+            border: none;
+            padding: 15px 0;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            background: transparent;
+            outline: none;
+            color: #333;
+        }
+        
+        .password-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .password-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6c757d;
+            font-size: 1.1rem;
+            padding: 5px;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .password-actions button:hover {
+            background: #e9ecef;
+            color: #4776E6;
+        }
+        
+        .numpad-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .numpad-btn {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f1 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 18px 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4776E6;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .numpad-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+            background: linear-gradient(135deg, #e6eeff 0%, #d0d9ff 100%);
+        }
+        
+        .numpad-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .login-footer {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .login-btn {
+            background: linear-gradient(90deg, #4776E6 0%, #8E54E9 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 16px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(71, 118, 230, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+        
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(71, 118, 230, 0.5);
+        }
+        
+        .login-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .security-info {
+            text-align: center;
+            margin-top: 25px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: #6c757d;
+            border: 1px solid #e9ecef;
+        }
+        
+        .security-info i {
+            color: #28a745;
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 100%;
+                border-radius: 15px;
+            }
+            
+            .login-body {
+                padding: 20px;
+            }
+            
+            .numpad-btn {
+                padding: 15px 0;
+                font-size: 1.4rem;
+            }
+        }
+        
+        .password-strength {
+            height: 5px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        
+        .strength-meter {
+            height: 100%;
+            width: 0%;
+            background: #dc3545;
+            transition: width 0.3s, background 0.3s;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-header">
+        <h1>Secure Login</h1>
+        <p>Enter your PIN to access your account</p>
+      </div>
+
+      <div class="login-body">
+        <div class="input-group">
+          <label for="password">Enter PIN</label>
+          <div class="password-field">
+            <input type="password" id="password" placeholder="••••••" readonly>
+            <div class="password-actions">
+              <button id="clear-btn" title="Clear password">
+                <i class="fas fa-times"></i>
+              </button>
+              <button id="toggle-btn" title="Show password">
+                <i class="fas fa-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="password-strength">
+            <div class="strength-meter" id="strength-meter"></div>
+          </div>
+        </div>
+
+        <div class="numpad-container" id="numpad">
+          <!-- Number buttons will be generated here -->
+        </div>
+
+        <div class="login-footer">
+          <button class="login-btn">Login</button>
+        </div>
+
+        <div class="security-info">
+          <i class="fas fa-shield-alt"></i>
+          Your information is securely encrypted
+        </div>
+      </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordInput = document.getElementById('password');
+            const clearBtn = document.getElementById('clear-btn');
+            const toggleBtn = document.getElementById('toggle-btn');
+            const numpad = document.getElementById('numpad');
+            const strengthMeter = document.getElementById('strength-meter');
+            
+            // Generate numbers 0-9
+            let numbers = Array.from({length: 10}, (_, i) => i);
+            
+            // Shuffle the numbers
+            function shuffleNumbers() {
+                for (let i = numbers.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+                }
+                renderNumpad();
+            }
+            
+            // Render the numpad with shuffled numbers
+            function renderNumpad() {
+                numpad.innerHTML = '';
+                numbers.forEach(num => {
+                    const button = document.createElement('button');
+                    button.className = 'numpad-btn';
+                    button.textContent = num;
+                    button.addEventListener('click', () => {
+                        passwordInput.value += num;
+                        updatePasswordStrength();
+                    });
+                    numpad.appendChild(button);
+                });
+            }
+            
+            // Clear password
+            clearBtn.addEventListener('click', () => {
+                passwordInput.value = '';
+                updatePasswordStrength();
+                shuffleNumbers();
+            });
+            
+            // Toggle password visibility
+            let isPasswordVisible = false;
+            toggleBtn.addEventListener('click', () => {
+                isPasswordVisible = !isPasswordVisible;
+                passwordInput.type = isPasswordVisible ? 'text' : 'password';
+                toggleBtn.innerHTML = isPasswordVisible ? 
+                    '<i class="fas fa-eye-slash"></i>' : 
+                    '<i class="fas fa-eye"></i>';
+                toggleBtn.title = isPasswordVisible ? 'Hide password' : 'Show password';
+            });
+            
+            // Update password strength indicator
+            function updatePasswordStrength() {
+                const length = passwordInput.value.length;
+                let width = 0;
+                let color = '#dc3545'; // red
+                
+                if (length > 0) {
+                    width = Math.min(100, length * 25);
+                    if (length >= 8) {
+                        color = '#28a745'; // green
+                    } else if (length >= 4) {
+                        color = '#ffc107'; // yellow
+                    }
+                }
+                
+                strengthMeter.style.width = `${width}%`;
+                strengthMeter.style.background = color;
+            }
+            
+            // Initialize
+            shuffleNumbers();
+        });
+    </script>
+  </body>
+</html>

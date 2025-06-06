@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #0f9d58, #0c7c43);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding: 30px 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.login-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.login-box h2 {
+  color: #0f9d58;
+  margin-bottom: 20px;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+}
+
+input:focus {
+  border-color: #0f9d58;
+  outline: none;
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-btn,
+.clear-btn {
+  position: absolute;
+  top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.toggle-btn {
+  right: 45px;
+}
+
+.clear-btn {
+  right: 10px;
+}
+
+.buttons-grid-10x10 {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.number-btn {
+  padding: 12px;
+  font-size: 14px;
+  border: none;
+  background-color: #0f9d58;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.number-btn:hover {
+  background-color: #0c7c43;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  padding: 12px 18px;
+  width: 100%;
+  font-size: 16px;
+  background-color: #0f9d58;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #0c7c43;
+}
